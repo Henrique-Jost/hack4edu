@@ -1,39 +1,67 @@
-# Internal Knowledge Base Preview
+# Compass | Plataforma de Tutores Inteligentes
 
-This template demonstrates the usage of the [Language Model Middleware](https://sdk.vercel.ai/docs/ai-sdk-core/middleware#language-model-middleware) to perform retrieval augmented generation and enforce guardrails using the [AI SDK](https://sdk.vercel.ai/docs) and [Next.js](https://nextjs.org/).
+Este projeto foi iniciado a partir de um fork do repositório da **Vercel**. Nosso objetivo é criar uma plataforma inovadora que permita a professores criar tutores inteligentes para seus alunos, proporcionando uma experiência de aprendizado interativa e personalizada.
 
-## Deploy your own
+## Objetivo do Projeto
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fai-sdk-preview-internal-knowledge-base&env=OPENAI_API_KEY%2CAUTH_SECRET&envDescription=API%20keys%20needed%20for%20application&envLink=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fai-sdk-preview-internal-knowledge-base%2Fblob%2Fmain%2F.env.example&stores=%5B%7B%22type%22%3A%22blob%22%7D%2C%7B%22type%22%3A%22postgres%22%7D%5D)
+A plataforma visa possibilitar a criação de tutores inteligentes por professores, onde os alunos poderão interagir com esses tutores usando uma interface orientada a áudio. Professores terão acesso a análises detalhadas sobre as interações dos alunos, incluindo métricas analíticas e sentimentais baseadas nas perguntas feitas ao tutor.
 
-## How to use
+### Funcionalidades principais:
 
-Run [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+1. **Interação com o tutor via audio foundation models**: Utilizando tecnologias como **hume.ai** (ou alternativas), os alunos poderão fazer perguntas aos tutores de forma verbal e receber respostas em áudio.
+2. **Criação de tutores pelos professores**: Professores terão a liberdade de criar e customizar tutores, ajustando-os às necessidades dos seus alunos.
+3. **Análise de interações**: A plataforma fornecerá aos professores relatórios sobre as interações dos alunos com os tutores, incluindo:
+   - Análise de sentimentos das perguntas feitas pelos alunos.
+   - Relatórios analíticos detalhados sobre o desempenho e engajamento dos alunos.
 
-```bash
-npx create-next-app --example https://github.com/vercel-labs/ai-sdk-preview-internal-knowledge-base ai-sdk-preview-internal-knowledge-base-example
-```
+## Tecnologias Utilizadas
 
-```bash
-yarn create next-app --example https://github.com/vercel-labs/ai-sdk-preview-internal-knowledge-base ai-sdk-preview-internal-knowledge-base-example
-```
+Este projeto foi construído utilizando as seguintes tecnologias:
 
-```bash
-pnpm create next-app --example https://github.com/vercel-labs/ai-sdk-preview-internal-knowledge-base ai-sdk-preview-internal-knowledge-base-example
-```
+- **@ai-sdk/openai**
+- **@langchain/textsplitters**
+- **@vercel/analytics**
+- **@vercel/blob**
+- **@vercel/kv**
+- **ai**
+- **bcrypt-ts**
+- **classnames**
+- **d3-scale**
+- **date-fns**
+- **dotenv**
+- **drizzle-orm** (orm para banco de dados)
+- **framer-motion**
+- **next.js**
+- **next-auth**
+- **openai-api**
+- **hume-ai** (em estudo)
+- **pdf-parse**
+- **postgres-vector** (Será adicionado como banco de dados vetorial)
+- **react**
+- **react-dom**
+- **react-markdown**
+- **remark-gfm**
+- **sonner**
+- **swr**
+- **use-local-storage**
+- **usehooks-ts**
+- **zod**
 
-To run the example locally you need to:
+### Futuras Adições
 
-1. Sign up for accounts with the AI providers you want to use (e.g., OpenAI, Anthropic).
-2. Obtain API keys for each provider.
-3. Set the required environment variables as shown in the `.env.example` file, but in a new file called `.env`.
-4. `npm install` to install the required dependencies.
-5. `npm run dev` to launch the development server.
+- **Banco de Dados Vetorial**: Será adicionado suporte ao banco de dados vetorial **Postgres**, que armazenará dados vetoriais relacionados às interações dos alunos com os tutores.
+- **Modelo de Linguagem Orientado a Áudio**: Um dos principais focos do projeto será a implementação de um modelo de linguagem que permita a interação por áudio, possibilitando que os alunos façam perguntas verbalmente ao tutor.
 
+## Estrutura do Projeto
 
-## Learn More
+Este projeto é baseado no framework **Next.js**, com suporte para autenticação via **next-auth** e armazenamento em **Postgres**. Utilizamos **Tailwind CSS** para estilização e **drizzle-orm** para gerenciamento de banco de dados.
 
-To learn more about the AI SDK or Next.js by Vercel, take a look at the following resources:
+## Contribuições e Desenvolvimento
 
-- [AI SDK Documentation](https://sdk.vercel.ai/docs)
-- [Next.js Documentation](https://nextjs.org/docs)
+Este repositório é um **fork** do repositório da **Vercel**, porém toda a configuração, hospedagem e infraestrutura são gerenciadas por nossa equipe. Além disso, todas as APIs utilizadas são de nossa responsabilidade.
+
+O desenvolvimento deste projeto está sendo realizado como parte do evento **Hack4Edu**, com foco na criação de uma plataforma inovadora para facilitar o aprendizado e a interação entre alunos e tutores inteligentes.
+
+---
+
+Starter Template [Vercel](https://vercel.com/templates/next.js/ai-sdk-internal-knowledge-base).
