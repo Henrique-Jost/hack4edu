@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="[https://github.com/Henrique-Jost/hack4edu/tree/main/docs/Images/](https://github.com/Henrique-Jost/hack4edu/blob/main/docs/Images/bussola-de-objetivo--de-estrategia-de-negocios.png)" width="550" title="Brújula IA">     
+  <img src="(https://github.com/Henrique-Jost/hack4edu/blob/main/docs/Images/bussola-de-objetivo--de-estrategia-de-negocios.png)" width="550" title="Brújula IA">     
 </p>
 
 # LangIA Brújula | Aprendizaje de idiomas asistido para contextos multilaterales
