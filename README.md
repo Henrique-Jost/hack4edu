@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/Henrique-Jost/hack4edu/docs/Images/IA.png">         
+</p>
+
 # LangIA Brújula | Aprendizaje de idiomas asistido para contextos multilaterales
 
 Compass | Plataforma de Tutores Inteligentes
