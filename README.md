@@ -2,23 +2,23 @@
 
 Compass | Plataforma de Tutores Inteligentes
 
-Este projeto foi iniciado a partir de um fork do repositório da **Vercel**. Nosso objetivo é criar uma plataforma inovadora que permita a professores criar tutores inteligentes para seus alunos, proporcionando uma experiência de aprendizado interativa e personalizada.
+Este proyecto se inició a partir de una bifurcación del repositorio de Vercel. Nuestro objetivo es crear una plataforma innovadora que permita a los profesores crear tutores inteligentes para sus estudiantes, brindando una experiencia de aprendizaje interactiva y personalizada.
 
-## Objetivo do Projeto
+## Objetivo del proyecto
 
-A plataforma visa possibilitar a criação de tutores inteligentes por professores, onde os alunos poderão interagir com esses tutores usando uma interface orientada a áudio. Professores terão acesso a análises detalhadas sobre as interações dos alunos, incluindo métricas analíticas e sentimentais baseadas nas perguntas feitas ao tutor.
+La plataforma tiene como objetivo permitir la creación de tutores inteligentes por parte de los profesores, donde los estudiantes podrán interactuar con estos tutores utilizando una interfaz orientada al audio. Los profesores tendrán acceso a análisis detallados de las interacciones de los estudiantes, incluidas métricas analíticas y sentimentales basadas en las preguntas formuladas al tutor.
 
-### Funcionalidades principais:
+### Características principales:
 
-1. **Interação com o tutor via audio foundation models**: Utilizando tecnologias como **hume.ai** (ou alternativas), os alunos poderão fazer perguntas aos tutores de forma verbal e receber respostas em áudio.
-2. **Criação de tutores pelos professores**: Professores terão a liberdade de criar e customizar tutores, ajustando-os às necessidades dos seus alunos.
-3. **Análise de interações**: A plataforma fornecerá aos professores relatórios sobre as interações dos alunos com os tutores, incluindo:
-   - Análise de sentimentos das perguntas feitas pelos alunos.
-   - Relatórios analíticos detalhados sobre o desempenho e engajamento dos alunos.
+1. **Interacción con el tutor a través de modelos básicos de audio**: utilizando tecnologías como **hume.ai** (o alternativas), los estudiantes podrán hacer preguntas a los tutores verbalmente y recibir respuestas en audio.
+2. **Creación de tutores por parte de los profesores**: Los profesores tendrán la libertad de crear y personalizar tutores, ajustándolos a las necesidades de sus alumnos.
+3. **Análisis de interacción**: la plataforma proporcionará a los profesores informes sobre las interacciones de los estudiantes con los tutores, que incluyen:
+   - Análisis de sentimiento de las preguntas formuladas por los estudiantes.
+   - Informes analíticos detallados sobre el desempeño y la participación de los estudiantes.
 
-## Tecnologias Utilizadas
+## Tecnologías utilizadas
 
-Este projeto foi construído utilizando as seguintes tecnologias:
+Este proyecto fue construido utilizando las siguientes tecnologías:
 
 - **@ai-sdk/openai**
 - **@langchain/textsplitters**
@@ -49,21 +49,21 @@ Este projeto foi construído utilizando as seguintes tecnologias:
 - **usehooks-ts**
 - **zod**
 
-### Futuras Adições
+### Adiciones futuras
 
-- **Banco de Dados Vetorial**: Será adicionado suporte ao banco de dados vetorial **Postgres**, que armazenará dados vetoriais relacionados às interações dos alunos com os tutores.
-- **Modelo de Linguagem Orientado a Áudio**: Um dos principais focos do projeto será a implementação de um modelo de linguagem que permita a interação por áudio, possibilitando que os alunos façam perguntas verbalmente ao tutor.
+- **Base de datos vectorial**: se agregará soporte para la base de datos vectorial **Postgres**, que almacenará datos vectoriales relacionados con las interacciones de los estudiantes con los tutores.
+- **Modelo de lenguaje orientado al audio**: Uno de los principales enfoques del proyecto será la implementación de un modelo de lenguaje que permita la interacción de audio, permitiendo a los estudiantes hacer preguntas verbalmente al tutor.
 
-## Estrutura do Projeto
+## Estructura del proyecto
 
-Este projeto é baseado no framework **Next.js**, com suporte para autenticação via **next-auth** e armazenamento em **Postgres**. Utilizamos **Tailwind CSS** para estilização e **drizzle-orm** para gerenciamento de banco de dados.
+Este proyecto se basa en el marco **Next.js**, con soporte para autenticación a través de **next-auth** y almacenamiento en **Postgres**. Usamos **Tailwind CSS** para diseñar y **drizzle-orm** para la gestión de bases de datos.
 
-## Contribuições e Desenvolvimento
+## Contribuciones y desarrollo
 
-Este repositório é um **fork** do repositório da **Vercel**, porém toda a configuração, hospedagem e infraestrutura são gerenciadas por nossa equipe. Além disso, todas as APIs utilizadas são de nossa responsabilidade.
+Este repositorio es una **bifurcación** del repositorio **Vercel**, pero toda la configuración, el alojamiento y la infraestructura son administrados por nuestro equipo. Además, todas las API utilizadas son nuestra responsabilidad.
 
-O desenvolvimento deste projeto está sendo realizado como parte do evento **Hack4Edu**, com foco na criação de uma plataforma inovadora para facilitar o aprendizado e a interação entre alunos e tutores inteligentes.
+El desarrollo de este proyecto se está llevando a cabo como parte del evento **Hack4Edu**, enfocándose en crear una plataforma innovadora para facilitar el aprendizaje y la interacción entre estudiantes y tutores inteligentes.
 
 ---
 
-Starter Template [Vercel](https://vercel.com/templates/next.js/ai-sdk-internal-knowledge-base).
+Demostración del modelo - Template [Vercel](https://vercel.com/templates/next.js/ai-sdk-internal-knowledge-base).
