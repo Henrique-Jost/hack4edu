@@ -4,7 +4,7 @@
 
 # LangIA Brújula | Aprendizaje de idiomas asistido para contextos multilaterales
 
-Compass | Plataforma de Tutores Inteligentes
+Brújula | Plataforma de Tutores Inteligentes
 
 Este proyecto se inició a partir de una bifurcación del repositorio de Vercel. Nuestro objetivo es crear una plataforma innovadora que permita a los profesores crear tutores inteligentes para sus estudiantes, brindando una experiencia de aprendizaje interactiva y personalizada.
 
