@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Henrique-Jost/hack4edu/tree/main/docs/Images/IA.png">     
+  <img src="https://github.com/Henrique-Jost/hack4edu/tree/main/docs/Images/IA.png" width="550" title="Brujula IA">     
 </p>
 
 # LangIA Brújula | Aprendizaje de idiomas asistido para contextos multilaterales
