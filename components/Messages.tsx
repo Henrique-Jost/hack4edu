@@ -9,16 +9,18 @@ export default function Messages() {
   const { messages } = useVoice();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom when messages change
+  // Auto-scroll to bottom when messages start
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (
-    <div className="flex flex-col gap-4 h-64 overflow-y-auto mt-4">
+    <div className="flex flex-col gap-4 h-64 overflow-y-auto rounded-md mt-4">
       {messages.map((msg, index) => {
         if (msg.type === "user_message" || msg.type === "assistant_message") {
           const role = msg.message.role;
+          const content = msg.message.content || ""; // expects a string type, dont know why, but there might be an issue with how the content is being passed
+          
           return (
             <motion.div
               key={msg.type + index}
@@ -32,7 +34,8 @@ export default function Messages() {
 
               <div className="flex flex-col gap-2 w-full">
                 <div className="flex flex-col gap-4">
-                  <Markdown>{msg.message.content}</Markdown>
+                  {/* Make sure content is a string */}
+                  <Markdown>{typeof content === 'string' ? content : String(content)}</Markdown>
                 </div>
               </div>
             </motion.div>
@@ -40,7 +43,7 @@ export default function Messages() {
         }
         return null;
       })}
-      {/* This empty div is used as a reference for scrolling to the bottom */}
+      {/* empty div is used as a reference for scrolling to the bottom */}
       <div ref={messagesEndRef} />
     </div>
   );
