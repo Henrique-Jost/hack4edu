@@ -53,7 +53,7 @@ export const History = () => {
             />
 
             <motion.div
-              className="fixed top-0 left-0 w-80 h-dvh p-3 flex flex-col gap-6 bg-white dark:bg-zinc-800 z-20"
+              className="fixed top-0 left-0 w-80 h-dvh p-3 flex flex-col gap-6 bg-white dark:bg-zinc-900 z-20"
               initial={{ x: "-100%" }}
               animate={{ x: "0%" }}
               exit={{ x: "-100%" }}

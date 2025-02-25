@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {},
-  instrumentationHook: true, //lanfuse trace
+  instrumentationHook: true, //langfuse trace
   serverExternalPackages: ["pdf-parse"],
 };
 

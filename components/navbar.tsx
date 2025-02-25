@@ -10,8 +10,17 @@ export const Navbar = async () => {
       <div className="flex flex-row gap-3 items-center">
         <History />
         <div className="text-sm dark:text-zinc-300">
-          Internal Knowledge Base
+          C🧭MPASS
         </div>
+        <div>
+          <Link
+            href="voice"
+            className="text-sm p-1 px-2 bg-zinc-900 rounded-md text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900"
+          >
+            Voice Mode
+          </Link>
+        </div>
+        
       </div>
 
       {session ? (

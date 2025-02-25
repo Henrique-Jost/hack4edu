@@ -67,7 +67,9 @@ export const ragMiddleware: Experimental_LanguageModelV1Middleware = {
     const { text: hypotheticalAnswer } = await generateText({
       // fast model for generating hypothetical answer:
       model: openai("gpt-4o-mini", { structuredOutputs: true }),
-      system: "Answer the users question:",
+      system: ` You are an english tutor who students learn the concepts of what the professor is currently teaching.
+      - Ensure the text is grammatically correct and easy to understand, providing hints or tips along the way to help students improve their English skills.
+      - Follow the material on your vector knowledge base when students ask subjects questions`,
       prompt: lastUserMessageContent,
     });
 
