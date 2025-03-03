@@ -1,19 +1,25 @@
-// ./app/page.tsx
+import { auth } from "@/app/(auth)/auth";
+import { notFound } from "next/navigation";
 import ClientComponent from "@/components/ClientComponent";
-import { fetchAccessToken } from "hume";
 
-export default async function Voice() {
-  const accessToken = await fetchAccessToken({
-    apiKey: String(process.env.HUME_API_KEY),
-    secretKey: String(process.env.HUME_SECRET_KEY),
-  });
+export default async function VoicePage() {
+  const session = await auth();
+  const humeApiKey = process.env.HUME_API_KEY;
 
-  const configId = String(process.env.NEXT_PUBLIC_HUME_CONFIG_ID);
-  console.log(configId)
-
-  if (!accessToken) {
-    throw new Error();
+  // Redirect to 404 if no authenticated session exists
+  if (!session?.user?.email) {
+    notFound();
   }
 
-  return <ClientComponent accessToken={accessToken} configId={configId}  />;
+  // Validate API key exists
+  if (!humeApiKey) {
+    throw new Error("Missing HUME_API_KEY environment variable");
+  }
+
+  return (
+    <ClientComponent 
+      accessToken={humeApiKey}
+      configId="836d6a92-113d-4f3e-bf30-daf985710be1"
+    />
+  );
 }
