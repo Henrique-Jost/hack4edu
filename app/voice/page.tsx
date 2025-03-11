@@ -5,6 +5,7 @@ import ClientComponent from "@/components/ClientComponent";
 export default async function VoicePage() {
   const session = await auth();
   const humeApiKey = process.env.HUME_API_KEY;
+  const configIdKey = process.env.HUME_CONFIG_ID;
 
   // Redirect to 404 if no authenticated session exists
   if (!session?.user?.email) {

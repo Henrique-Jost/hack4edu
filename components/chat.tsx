@@ -78,7 +78,7 @@ export function Chat({
     useScrollToBottom<HTMLDivElement>();
 
   return (
-    <div className="flex flex-row justify-center h-dvh bg-white dark:bg-zinc-800">
+    <div className="flex flex-row justify-center h-dvh bg-white dark:bg-zinc-200">
       <div className="flex flex-col h-full justify-between items-center gap-4">
         <div
           ref={messagesContainerRef}
@@ -114,10 +114,10 @@ export function Chat({
                       content: suggestedAction.action,
                     });
                   }}
-                  className="w-full text-left border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-300 rounded-lg p-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors flex flex-col"
+                  className="w-full text-left border border-zinc-200 dark:border-zinc-600 text-zinc-800 dark:text-zinc-500 rounded-lg p-2 text-sm hover:bg-zinc-300 dark:hover:bg-zinc-300 transition-colors flex flex-col"
                 >
                   <span className="font-medium">{suggestedAction.title}</span>
-                  <span className="text-zinc-400 dark:text-zinc-400">
+                  <span className="text-zinc-700 dark:text-zinc-700">
                     {suggestedAction.label}
                   </span>
                 </button>

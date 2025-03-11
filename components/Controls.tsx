@@ -1,9 +1,15 @@
 "use client";
 import { useVoice, VoiceReadyState } from "@humeai/voice-react";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Controls() {
   const { connect, disconnect, readyState, pauseAssistant, resumeAssistant } = useVoice();
+
+  // Add useEffect to log the readyState changes for debugging
+  useEffect(() => {
+    console.log("Voice ready state:", readyState);
+  }, [readyState]);
 
   return (
     <motion.div 
@@ -28,7 +34,10 @@ export default function Controls() {
         ) : (
           <button
             className="text-green-500 hover:text-green-400 font-medium flex-center transition-colors"
-            onClick={() => connect()}
+            onClick={() => {
+              console.log("Attempting to connect...");
+              connect();
+            }}
           >
             Start Voice Chat
           </button>

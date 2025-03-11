@@ -4,7 +4,7 @@ import { openai } from "@ai-sdk/openai";
 import {
   cosineSimilarity,
   embed,
-  Experimental_LanguageModelV1Middleware,
+  LanguageModelV1Middleware,
   generateObject,
   generateText,
 } from "ai";
@@ -17,7 +17,7 @@ const selectionSchema = z.object({
   }),
 });
 
-export const ragMiddleware: Experimental_LanguageModelV1Middleware = {
+export const ragMiddleware: LanguageModelV1Middleware = {
   transformParams: async ({ params }) => {
     const session = await auth();
 
@@ -55,6 +55,7 @@ export const ragMiddleware: Experimental_LanguageModelV1Middleware = {
       enum: ["question", "statement", "other"],
       system: "classify the user message as a question, statement, or other",
       prompt: lastUserMessageContent,
+      
     });
 
     // only use RAG for questions
@@ -66,11 +67,13 @@ export const ragMiddleware: Experimental_LanguageModelV1Middleware = {
     // Use hypothetical document embeddings:
     const { text: hypotheticalAnswer } = await generateText({
       // fast model for generating hypothetical answer:
-      model: openai("gpt-4o-mini", { structuredOutputs: true }),
-      system: ` You are an english tutor who students learn the concepts of what the professor is currently teaching.
+      model: openai.responses("gpt-4o-mini"),
+      system: ` You are an tutor who students learn the concepts of what the professor is currently teaching.
       - Ensure the text is grammatically correct and easy to understand, providing hints or tips along the way to help students improve their English skills.
-      - Follow the material on your vector knowledge base when students ask subjects questions`,
+      - Follow the material on your vector knowledge base when students ask subjects questions
+      `,
       prompt: lastUserMessageContent,
+
     });
 
     // Embed the hypothetical answer
