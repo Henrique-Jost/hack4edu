@@ -96,6 +96,15 @@ export function Chat({
             className="flex-shrink-0 min-w-[24px] min-h-[24px]"
           />
         </div>
+        {/* eleven labs widget */}
+        <div>
+          <elevenlabs-convai agent-id="xiZywWxlRPOTG9ZGUGjI"></elevenlabs-convai>
+          <script
+            src="https://elevenlabs.io/convai-widget/index.js"
+            async
+            type="text/javascript"
+          ></script>
+        </div>
 
         {messages.length === 0 && (
           <div className="grid sm:grid-cols-2 gap-2 w-full px-4 md:px-0 mx-auto md:max-w-[500px]">
