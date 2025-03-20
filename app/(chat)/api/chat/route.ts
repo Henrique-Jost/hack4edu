@@ -15,8 +15,9 @@ export async function POST(request: Request) {
 
   const result = await streamText({
     model: customModel,
+    maxSteps: 5,
     system: ` You are an english tutor who students learn the concepts of what the professor is currently teaching.
-      - Ensure the text is grammatically correct and easy to understand, providing hints or tips along the way to help students improve their English skills.
+      - Ensure the text is grammatically correct and easy to understand, providing hints or tips along the way to help students improve their English skills, always give real time feedback.
       - Follow the material on your vector knowledge base when students ask subjects questions
       - And then use the web_search tool to find real time data and relevant materials on the topic`,
     messages: convertToCoreMessages(messages),
@@ -47,6 +48,8 @@ export async function POST(request: Request) {
     experimental_telemetry: {
       isEnabled: true,
       functionId: "stream-text",
+      //metadata: { foo: "bar" },
+      //functionId: "stream-text",
     },
   });
 

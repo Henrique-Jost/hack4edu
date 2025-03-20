@@ -4,6 +4,6 @@ import { LangfuseExporter } from "langfuse-vercel";
 export function register() {
   registerOTel({
     serviceName: "compass-project",
-    traceExporter: new LangfuseExporter(),
+    //traceExporter: new LangfuseExporter(),
   });
 }
