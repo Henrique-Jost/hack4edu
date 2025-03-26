@@ -514,3 +514,34 @@ export const InfoIcon = ({ size = 16 }: { size?: number }) => {
     </svg>
   );
 };
+
+// ... existing icons ...
+
+export function SpeakerIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M11 5L6 9H2v6h4l5 4V5z" />
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+    </svg>
+  );
+}
+
+export function LoadingIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <circle cx="12" cy="12" r="10" strokeDasharray="50" strokeDashoffset="20" />
+    </svg>
+  );
+}

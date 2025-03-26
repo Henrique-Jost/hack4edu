@@ -8,9 +8,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { AttachmentIcon, FileIcon, MoreIcon, UploadIcon } from "@/components/icons";
 import { Message as PreviewMessage } from "@/components/message";
 import { useScrollToBottom } from "@/components/use-scroll-to-bottom";
+import { UserFeedbackComponent } from "@/components/UserFeedbackComponent";
 import Link from "next/link";
 import { Session } from "next-auth";
 import Image from 'next/image';
+import { VoiceButton } from './VoiceButton';
 
 
 const suggestedActions = [
@@ -85,18 +87,26 @@ export function Chat({
           className="flex flex-col gap-4 flex-1 w-dvw items-center overflow-y-scroll"
         >
           {messages.map((message, index) => (
+            <div key={`${id}-${index}`} className="justify-center">
             <PreviewMessage
-              key={`${id}-${index}`}
               role={message.role}
               content={message.content}
             />
+            {message.role === "assistant" && (
+              <div className="flex justify-end mt-1 mr-4">
+                <UserFeedbackComponent traceId={id} />
+                <VoiceButton text={message.content} />
+              </div>
+              
+            )}
+          </div>
           ))}
           <div
             ref={messagesEndRef}
             className="flex-shrink-0 min-w-[24px] min-h-[24px]"
           />
         </div>
-        {/* eleven labs widget */}
+        {/* 
         <div>
           <elevenlabs-convai agent-id="xiZywWxlRPOTG9ZGUGjI"></elevenlabs-convai>
           <script
@@ -105,7 +115,7 @@ export function Chat({
             type="text/javascript"
           ></script>
         </div>
-
+        eleven labs widget */}
         {messages.length === 0 && (
           <div className="grid sm:grid-cols-2 gap-2 w-full px-4 md:px-0 mx-auto md:max-w-[500px]">
             {suggestedActions.map((suggestedAction, index) => (

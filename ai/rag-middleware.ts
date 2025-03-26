@@ -52,8 +52,11 @@ export const ragMiddleware: LanguageModelV1Middleware = {
       // fast model for classification:
       model: openai("gpt-4o-mini", { structuredOutputs: true }),
       output: "enum",
-      enum: ["question", "statement", "other"],
-      system: "classify the user message as a question, statement, or other",
+      enum: ["question", "general", "other"],
+      system: `Classify the user message into one of these categories:
+      - question: Questions related to academic subjects, learning materials, or course content related to language learning or project managment
+      - general: Any declarative statements or questions not related to academic or any learning content above
+      - other: Commands, greetings, or other types of messages`,
       prompt: lastUserMessageContent,
       
     });
@@ -68,10 +71,20 @@ export const ragMiddleware: LanguageModelV1Middleware = {
     const { text: hypotheticalAnswer } = await generateText({
       // fast model for generating hypothetical answer:
       model: openai.responses("gpt-4o-mini"),
-      system: ` You are an tutor who students learn the concepts of what the professor is currently teaching.
-      - Ensure the text is grammatically correct and easy to understand, providing hints or tips along the way to help students improve their English skills.
-      - Follow the material on your vector knowledge base when students ask subjects questions
-      `,
+      system: `You are an intelligent tutoring assistant designed to help students understand academic concepts.
+      
+      Key responsibilities:
+      - Provide clear, structured explanations of academic concepts
+      - Break down complex topics into digestible parts
+      - Use appropriate academic terminology while remaining accessible
+      - Focus on the specific subject matter present in the knowledge base
+      - Maintain an educational and professional tone
+
+      When generating a hypothetical answer:
+      1. Consider the likely subject area of the question
+      2. Frame the response in an educational context
+      3. Include relevant academic terminology
+      4. Structure the answer as if explaining to a student`,
       prompt: lastUserMessageContent,
 
     });
@@ -107,7 +120,7 @@ export const ragMiddleware: LanguageModelV1Middleware = {
         ...recentMessage.content,
         {
           type: "text",
-          text: "Here is some relevant information that you can use to answer the question:",
+          text: "Here is some relevant context retrieved information about the subject or theme that you can use to answer the question:",
         },
         ...topKChunks.map((chunk) => ({
           type: "text" as const,
