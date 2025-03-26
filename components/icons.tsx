@@ -545,3 +545,41 @@ export function LoadingIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+export function CompassIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      width="16"
+      height="16"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polygon 
+        fill="currentColor"
+        points="12,7 15,17 12,14 9,17"
+      />
+      <circle cx="12" cy="12" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function UserAvatarIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      width="16"
+      height="16"
+    >
+      <circle cx="12" cy="8" r="5" />
+      <path d="M20 21a8 8 0 1 0-16 0" />
+    </svg>
+  );
+}
