@@ -74,6 +74,9 @@ importers:
       hume:
         specifier: ^0.9.1
         version: 0.9.1
+      langfuse:
+        specifier: ^3.37.0
+        version: 3.37.0
       langfuse-vercel:
         specifier: ^3.27.0
         version: 3.27.0(ai@4.2.0(react@19.0.0-rc-7771d3a7-20240827)(zod@3.23.8))
@@ -2333,14 +2336,18 @@ packages:
     resolution: {integrity: sha512-0GSQFMpQ4lFFIBIO3+7qyOHTnIXRuU93zbXxw8RvSv4kadhOjTLsxAhSs2y7kK3bpFkPHVBiQAp4Doo/FZjXtA==}
     engines: {node: '>=18'}
 
+  langfuse-core@3.37.0:
+    resolution: {integrity: sha512-7ZOFJ51u4dOeCpsQ8otNuNYeMb7xsExVQcOIBOByPFKjjd1mjf/03xF907F44dRzgf7n1U8ZYa0XgMSRgxKNoA==}
+    engines: {node: '>=18'}
+
   langfuse-vercel@3.27.0:
     resolution: {integrity: sha512-vHEznWtGe3cqNJJMuQpMZQY/GBOYYBmQIzqgSTleI0cjZMoSKwRK46non4hA6n3w4pHWNb6gvYu8+3/OvRcnDQ==}
     engines: {node: '>=18'}
     peerDependencies:
       ai: '>=3.2.44'
 
-  langfuse@3.27.0:
-    resolution: {integrity: sha512-zYQae1ebHkZkSjGhDP64RtZrzMAadnUk5fcW63UHovKTSNDtlU6ed2h5rPSaKFv3SiXiHjhL8E5pnTh/wHhuvQ==}
+  langfuse@3.37.0:
+    resolution: {integrity: sha512-NpemB+5i6VT9CXmBwQTE4q1DPOY/DH7OMxBJn8Rcirw+z2HYJpTRH8j48cBjzwqmYtqLdqyJMzAALa2ReQ50hQ==}
     engines: {node: '>=18'}
 
   langsmith@0.1.65:
@@ -5535,15 +5542,19 @@ snapshots:
     dependencies:
       mustache: 4.2.0
 
+  langfuse-core@3.37.0:
+    dependencies:
+      mustache: 4.2.0
+
   langfuse-vercel@3.27.0(ai@4.2.0(react@19.0.0-rc-7771d3a7-20240827)(zod@3.23.8)):
     dependencies:
       ai: 4.2.0(react@19.0.0-rc-7771d3a7-20240827)(zod@3.23.8)
-      langfuse: 3.27.0
+      langfuse: 3.37.0
       langfuse-core: 3.27.0
 
-  langfuse@3.27.0:
+  langfuse@3.37.0:
     dependencies:
-      langfuse-core: 3.27.0
+      langfuse-core: 3.37.0
 
   langsmith@0.1.65(openai@4.89.1(ws@8.18.0)(zod@3.23.8)):
     dependencies:
