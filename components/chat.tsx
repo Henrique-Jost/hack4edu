@@ -13,6 +13,7 @@ import Link from "next/link";
 import { Session } from "next-auth";
 import Image from 'next/image';
 import { VoiceButton } from './VoiceButton';
+import { AudioRecordButton } from "./AudioRecordButton";
 
 
 const suggestedActions = [
@@ -22,9 +23,9 @@ const suggestedActions = [
     action: "what's the summary of these documents?",
   },
   {
-    title: "Who is the author",
-    label: "of these documents?",
-    action: "who is the author of these documents?",
+    title: "Tutor me",
+    label: "on these documents?",
+    action: "Tutor me on these documents?",
   },
 ];
 
@@ -75,6 +76,7 @@ export function Chat({
       window.history.replaceState({}, "", `/${id}`);
     },
   });
+
 
   const [messagesContainerRef, messagesEndRef] =
     useScrollToBottom<HTMLDivElement>();
@@ -133,10 +135,10 @@ export function Chat({
                       content: suggestedAction.action,
                     });
                   }}
-                  className="w-full text-left border border-zinc-200 dark:border-zinc-600 text-zinc-800 dark:text-zinc-500 rounded-lg p-2 text-sm hover:bg-zinc-300 dark:hover:bg-zinc-300 transition-colors flex flex-col"
+                  className="w-full text-left border border-zinc-200 dark:border-zinc-600 text-zinc-300 dark:text-zinc-300 rounded-lg p-2 text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors flex flex-col"
                 >
                   <span className="font-medium">{suggestedAction.title}</span>
-                  <span className="text-zinc-700 dark:text-zinc-700">
+                  <span className="text-zinc-100 dark:text-zinc-400">
                     {suggestedAction.label}
                   </span>
                 </button>
@@ -176,6 +178,7 @@ export function Chat({
                     {selectedFilePathnames?.length}
                   </motion.div>
                 </button>
+                <AudioRecordButton onTranscriptionComplete={(text) => setInput(text)}></AudioRecordButton>
 
                 {/* Send Button */}
                 <button
