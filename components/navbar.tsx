@@ -1,6 +1,7 @@
 import { auth, signOut } from "@/app/(auth)/auth";
 import Link from "next/link";
 import { History } from "./history";
+import { CompassIcon } from "./icons";
 
 export const Navbar = async () => {
   let session = await auth();
@@ -10,17 +11,8 @@ export const Navbar = async () => {
       <div className="flex flex-row gap-3 items-center">
         <History />
         <div className="text-sm dark:text-zinc-300">
-          C🧭MPASS
-        </div>
-        <div>
-          <Link
-            href="voice"
-            className="text-sm p-1 px-2 bg-zinc-900 rounded-md text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900"
-          >
-            Voice Mode
-          </Link>
-        </div>
-        
+          <CompassIcon></CompassIcon> 
+        </div> 
       </div>
 
       {session ? (

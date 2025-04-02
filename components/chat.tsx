@@ -5,7 +5,7 @@ import { useChat } from "ai/react";
 import { useEffect, useState } from "react";
 import { Files } from "@/components/files";
 import { AnimatePresence, motion } from "framer-motion";
-import { AttachmentIcon, FileIcon, MoreIcon, UploadIcon } from "@/components/icons";
+import { AttachmentIcon, FileIcon, MoreIcon, SendIcon, UploadIcon } from "@/components/icons";
 import { Message as PreviewMessage } from "@/components/message";
 import { useScrollToBottom } from "@/components/use-scroll-to-bottom";
 import { UserFeedbackComponent } from "@/components/UserFeedbackComponent";
@@ -80,7 +80,7 @@ export function Chat({
     useScrollToBottom<HTMLDivElement>();
 
   return (
-    <div className="flex flex-row justify-center h-dvh bg-white dark:bg-zinc-200 pt-12">
+    <div className="flex flex-row justify-center h-dvh bg-white dark:bg-zinc-900 pt-12">
       <div className="flex flex-col h-full justify-between items-center gap-4">
         <div
           ref={messagesContainerRef}
@@ -117,7 +117,7 @@ export function Chat({
         </div>
         eleven labs widget */}
         {messages.length === 0 && (
-          <div className="grid sm:grid-cols-2 gap-2 w-full px-4 md:px-0 mx-auto md:max-w-[500px]">
+          <div className="grid sm:grid-cols-2 gap-2 w-full px-4 md:px-0 mx-auto md:max-w-[600px]">
             {suggestedActions.map((suggestedAction, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -145,37 +145,51 @@ export function Chat({
           </div>
         )}
 
-        <div className="w-full md:max-w-[500px] px-4 md:px-0 pb-5">
+        <div className="w-full md:max-w-[600px] px-4 md:px-0 pb-5">
           <form onSubmit={handleSubmit}>
-            <div className="relative">
-              <input
-                className="bg-zinc-600 rounded-md pl-2 pr-16 py-5 w-full outline-none dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100"
+            <div className="relative bg-zinc-600 dark:bg-zinc-800 rounded-md overflow-hidden">
+              {/* Textarea Section */}
+              <textarea
+                className="w-full pl-4 pr-2 pt-4 pb-2 bg-transparent outline-none text-zinc-800 dark:text-zinc-100 resize-none placeholder:text-left min-h-[80px]"
                 placeholder="Send a message..."
                 value={input}
                 onChange={(event) => {
                   setInput(event.target.value);
                 }}
+                rows={3}
               />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 flex items-center pr-2 pl-2 text-sm bg-zinc-100 rounded-r-md flex-shrink-0 cursor-pointer hover:bg-zinc-200 dark:text-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-700"
-                onClick={() => setIsFilesVisible(!isFilesVisible)}
-              >
-                <FileIcon />
-                <motion.div
-                  className="relative ml-1 text-xs bg-blue-500 size-5 rounded-full flex items-center justify-center border-2 dark:border-zinc-900 border-white text-blue-50"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 }}
+              
+              {/* Button Section */}
+              <div className="border-t border-zinc-700 p-2 flex items-center justify-between">
+                <button
+                  type="button"
+                  className="flex items-center gap-1 p-2 text-sm rounded-md cursor-pointer hover:bg-zinc-700 dark:text-zinc-50 transition-colors"
+                  onClick={() => setIsFilesVisible(!isFilesVisible)}
                 >
-                  {selectedFilePathnames?.length}
-                </motion.div>
-              </button>
+                  <FileIcon />
+                  <motion.div
+                    className="relative text-xs bg-green-800 size-5 rounded-full flex items-center justify-center border-2 dark:border-zinc-900 border-white text-blue-50"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    {selectedFilePathnames?.length}
+                  </motion.div>
+                </button>
+
+                {/* Send Button */}
+                <button
+                  type="submit"
+                  className="flex items-center gap-2 px-4 py-2 text-sm rounded-md cursor-pointer bg-green-800 hover:bg-green-700 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={!input.trim()}
+                >
+                  <SendIcon></SendIcon>
+                </button>
+              </div>
             </div>
           </form>
         </div>
       </div>
-
       <AnimatePresence>
         {isFilesVisible && (
           <Files
