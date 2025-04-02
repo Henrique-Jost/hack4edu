@@ -1,25 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-// Configure API route options
-export const config = {
-  api: {
-    bodyParser: false, // Disable body parser since we're handling FormData
-  },
-};
+// New way to configure the route
+export const runtime = 'edge'; // 'nodejs' or 'edge'
+export const dynamic = 'force-dynamic';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
 export async function POST(request: NextRequest) {
-  if (!process.env.OPENAI_API_KEY) {
-    return NextResponse.json(
-      { message: 'OpenAI API key is not configured' },
-      { status: 500 }
-    );
-  }
-
   try {
     const formData = await request.formData();
     const audioFile = formData.get('audio');
@@ -57,3 +47,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
