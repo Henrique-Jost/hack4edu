@@ -2,7 +2,7 @@ import { customModel } from "@/ai";
 import { auth } from "@/app/(auth)/auth";
 import { createMessage } from "@/app/db";
 import { convertToCoreMessages, streamText} from "ai";
-//import { openai } from "@ai-sdk/openai";
+import { openai } from "@ai-sdk/openai";
 
 
 export async function POST(request: Request) {
