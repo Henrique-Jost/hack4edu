@@ -51,6 +51,7 @@ export async function POST(request: Request) {
       For vocabulary questions: Provide definition + example + ask student to create their own contextual example
       For pronunciation challenges: Break down sounds phonetically + suggest memory techniques + request practice repetition
       For grammar confusions: Explain rule briefly + show correct vs. incorrect examples + ask guided application questions
+      When the student does not get the correct pronunciation, break it smaller phoneme and repeat the word 3 times in a paused voice before user new response
     `,
     messages: convertToCoreMessages(messages),
     tools: {
