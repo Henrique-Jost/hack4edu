@@ -10,10 +10,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@11labs/react": "^0.1.0",
     "@ai-sdk/anthropic": "^1.1.17",
+    "@ai-sdk/deepseek": "^0.2.8",
     "@ai-sdk/google": "^1.2.3",
     "@ai-sdk/openai": "^1.2.2",
-    "@humeai/voice": "^0.1.10",
     "@humeai/voice-react": "^0.1.16",
     "@langchain/textsplitters": "^0.0.3",
     "@opentelemetry/api-logs": "^0.53.0",

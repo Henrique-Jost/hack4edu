@@ -13,22 +13,22 @@ export const Message = ({
   content: string | ReactNode;
 }) => {
   // Add console.log to debug
-  //console.log('Message received:', { role, content });
+  //
 
   return (
     <motion.div
-      className={`flex flex-row gap-4 px-4 w-full md:w-[600px] md:px-2 mt:px2 pb-4 pt-4 border rounded-lg ${
-        role === "assistant" ? "border-zinc-800" : "border-zinc-800 bg-zinc-800"
+      className={`flex flex-row gap-4 px-4 w-full md:w-[700px] md:px-2 mt:px2 pb-4 pt-4 border rounded-lg ${
+        role === "assistant" ? "border-stone-100 bg-stone-100" : "border-stone-200 bg-stone-200"
       }`}
       initial={{ y: 5, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
     >
-      <div className="size-[24px] flex flex-col justify-center items-center flex-shrink-0 text-zinc-100">
+      <div className="size-[24px] flex flex-col justify-center items-center flex-shrink-0 text-zinc-900">
         {role === "assistant" ? <CompassIcon /> : <UserAvatarIcon />}
       </div>
 
       <div className="flex flex-col gap-6 w-full overflow-hidden">
-        <div className="text-zinc-800 dark:text-zinc-100 flex flex-col gap-4 break-words">
+        <div className="text-zinc-100 dark:text-zinc-900 flex flex-col gap-4 break-words">
           {typeof content === 'string' ? (
             <Markdown>{content}</Markdown>
           ) : (

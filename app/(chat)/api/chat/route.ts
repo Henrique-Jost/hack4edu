@@ -4,6 +4,8 @@ import { createMessage } from "@/app/db";
 import { convertToCoreMessages, streamText} from "ai";
 import { openai } from "@ai-sdk/openai";
 
+export const maxDuration = 60; // Maximum duration in seconds
+export const preferredRegion = 'auto'; // Preferred region for edge functions
 
 export async function POST(request: Request) {
   const { id, messages, selectedFilePathnames } = await request.json();
@@ -13,7 +15,6 @@ export async function POST(request: Request) {
   if (!session) {
     return new Response("Unauthorized", { status: 401 });
   }
-  
 
   const result = await streamText({
     model: customModel,
@@ -52,7 +53,7 @@ export async function POST(request: Request) {
       For grammar confusions: Explain rule briefly + show correct vs. incorrect examples + ask guided application questions
     `,
     messages: convertToCoreMessages(messages),
-    /*tools: {
+    tools: {
       web_search_preview: openai.tools.webSearchPreview({
         searchContextSize: 'low',
         userLocation: {
@@ -60,7 +61,7 @@ export async function POST(request: Request) {
           country: "BR"
         },
       }),
-    }, */
+    }, 
     experimental_providerMetadata: {
       files: {
         selection: selectedFilePathnames,
@@ -75,6 +76,11 @@ export async function POST(request: Request) {
     },
     experimental_telemetry: { isEnabled: true },
   });
+
+  // Log the model and response
+  console.log("Using model:", customModel);
+  console.log("Response:", result);
+  
 
   return result.toDataStreamResponse({
     sendSources: true,

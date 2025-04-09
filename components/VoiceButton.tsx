@@ -46,7 +46,7 @@ export function VoiceButton({ text }: VoiceButtonProps) {
       disabled={isPlaying || isLoading}
       // Prevent button from triggering scroll behavior
       onMouseDown={(e) => e.preventDefault()}
-      className="p-2 rounded-full hover:bg-zinc-500 dark:hover:bg-zinc-500 transition-colors"
+      className="pl-2 pr-1 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-300 transition-colors"
     >
       {isLoading ? (
         <LoadingIcon className="w-4 h-4 animate-spin" />

@@ -14,6 +14,7 @@ import { Session } from "next-auth";
 import Image from 'next/image';
 import { VoiceButton } from './VoiceButton';
 import { AudioRecordButton } from "./AudioRecordButton";
+import { Conversation } from '@/components/conversation';
 
 
 const suggestedActions = [
@@ -27,6 +28,11 @@ const suggestedActions = [
     label: "on these documents?",
     action: "Tutor me on these documents?",
   },
+  {
+    title: "Can you identify risk",
+    label: "points on these documents?",
+    action: "Tutor me on these documents?",
+  }
 ];
 
 export function Chat({
@@ -82,7 +88,7 @@ export function Chat({
     useScrollToBottom<HTMLDivElement>();
 
   return (
-    <div className="flex flex-row justify-center h-dvh bg-white dark:bg-zinc-900 pt-12">
+    <div className="flex flex-row justify-center h-dvh bg-white dark:bg-stone-100 pt-12">
       <div className="flex flex-col h-full justify-between items-center gap-4">
         <div
           ref={messagesContainerRef}
@@ -108,18 +114,8 @@ export function Chat({
             className="flex-shrink-0 min-w-[24px] min-h-[24px]"
           />
         </div>
-        {/* 
-        <div>
-          <elevenlabs-convai agent-id="xiZywWxlRPOTG9ZGUGjI"></elevenlabs-convai>
-          <script
-            src="https://elevenlabs.io/convai-widget/index.js"
-            async
-            type="text/javascript"
-          ></script>
-        </div>
-        eleven labs widget */}
         {messages.length === 0 && (
-          <div className="grid sm:grid-cols-2 gap-2 w-full px-4 md:px-0 mx-auto md:max-w-[600px]">
+          <div className="grid sm:grid-cols-3 gap-2 w-full px-4 md:px-0 mx-auto md:max-w-[700px]">
             {suggestedActions.map((suggestedAction, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -135,10 +131,10 @@ export function Chat({
                       content: suggestedAction.action,
                     });
                   }}
-                  className="w-full text-left border border-zinc-200 dark:border-zinc-600 text-zinc-300 dark:text-zinc-300 rounded-lg p-2 text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors flex flex-col"
+                  className="w-full text-left border border-zinc-200 dark:border-zinc-300 text-zinc-300 dark:text-zinc-600 rounded-lg p-2 text-sm hover:bg-zinc-200 dark:hover:bg-zinc-200 transition-colors flex flex-col"
                 >
                   <span className="font-medium">{suggestedAction.title}</span>
-                  <span className="text-zinc-100 dark:text-zinc-400">
+                  <span className="text-zinc-100 dark:text-zinc-500">
                     {suggestedAction.label}
                   </span>
                 </button>
@@ -147,12 +143,12 @@ export function Chat({
           </div>
         )}
 
-        <div className="w-full md:max-w-[600px] px-4 md:px-0 pb-5">
+        <div className="w-full md:max-w-[700px] px-4 md:px-0 pb-5">
           <form onSubmit={handleSubmit}>
-            <div className="relative bg-zinc-600 dark:bg-zinc-800 rounded-md overflow-hidden">
+            <div className="relative bg-zinc-600 dark:bg-neutral-50 border border-zinc-200 rounded-lg overflow-hidden">
               {/* Textarea Section */}
               <textarea
-                className="w-full pl-4 pr-2 pt-4 pb-2 bg-transparent outline-none text-zinc-800 dark:text-zinc-100 resize-none placeholder:text-left min-h-[80px]"
+                className="w-full pl-4 pr-2 pt-4 pb-2 bg-transparent outline-none text-zinc-800 dark:text-zinc-00 resize-none placeholder:text-left min-h-[80px]"
                 placeholder="Send a message..."
                 value={input}
                 onChange={(event) => {
@@ -162,28 +158,37 @@ export function Chat({
               />
               
               {/* Button Section */}
-              <div className="border-t border-zinc-700 p-2 flex items-center justify-between">
-                <button
-                  type="button"
-                  className="flex items-center gap-1 p-2 text-sm rounded-md cursor-pointer hover:bg-zinc-700 dark:text-zinc-50 transition-colors"
-                  onClick={() => setIsFilesVisible(!isFilesVisible)}
-                >
-                  <FileIcon />
-                  <motion.div
-                    className="relative text-xs bg-green-800 size-5 rounded-full flex items-center justify-center border-2 dark:border-zinc-900 border-white text-blue-50"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 }}
+              <div className="border-zinc-700 p-3 flex items-center justify-between">
+                <div className="flex items-center">
+                  <button
+                    type="button"
+                    className="flex items-center gap-0.2 p-2 text-sm rounded-md cursor-pointer hover:bg-neutral-400 dark:text-zinc-900 transition-colors"
+                    onClick={() => setIsFilesVisible(!isFilesVisible)}
                   >
-                    {selectedFilePathnames?.length}
-                  </motion.div>
-                </button>
-                <AudioRecordButton onTranscriptionComplete={(text) => setInput(text)}></AudioRecordButton>
+                    <FileIcon />
+                    <motion.div
+                      className="relative text-xs bg-green-900 size-5 rounded-full flex items-center justify-center border-2 dark:border-zinc-900 border-white text-blue-50"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.5 }}
+                    >
+                      {selectedFilePathnames?.length}
+                    </motion.div>
+                  </button>
+
+                  {/* Audio Mode */}
+                  <AudioRecordButton onTranscriptionComplete={(text) => setInput(text)}></AudioRecordButton>
+                  
+                  {/* Enki live */}
+                  <Conversation />
+
+                </div>
 
                 {/* Send Button */}
+                
                 <button
                   type="submit"
-                  className="flex items-center gap-2 px-4 py-2 text-sm rounded-md cursor-pointer bg-green-800 hover:bg-green-700 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-2 px-4 py-2 text-sm rounded-md cursor-pointer bg-green-900 hover:bg-neutral-800 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!input.trim()}
                 >
                   <SendIcon></SendIcon>

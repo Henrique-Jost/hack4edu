@@ -77,7 +77,7 @@ export function AudioRecordButton({ onTranscriptionComplete }: AudioRecordButton
     <button
       onClick={isRecording ? stopRecording : startRecording}
       disabled={isProcessing}
-      className="flex items-center gap-2 p-2 text-sm rounded-md cursor-pointer hover:bg-zinc-700 dark:text-zinc-50 transition-colors"
+      className="flex items-center gap-2 p-2 text-sm rounded-md cursor-pointer hover:bg-neutral-400 dark:text-zinc-900 transition-colors"
       title={isRecording ? "Stop recording" : "Start recording"}
     >
       {isProcessing ? (

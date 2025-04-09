@@ -8,18 +8,21 @@ importers:
 
   .:
     dependencies:
+      '@11labs/react':
+        specifier: ^0.1.0
+        version: 0.1.0(react@19.0.0-rc-7771d3a7-20240827)
       '@ai-sdk/anthropic':
         specifier: ^1.1.17
         version: 1.1.17(zod@3.23.8)
+      '@ai-sdk/deepseek':
+        specifier: ^0.2.8
+        version: 0.2.8(zod@3.23.8)
       '@ai-sdk/google':
         specifier: ^1.2.3
         version: 1.2.3(zod@3.23.8)
       '@ai-sdk/openai':
         specifier: ^1.2.2
         version: 1.2.2(zod@3.23.8)
-      '@humeai/voice':
-        specifier: ^0.1.10
-        version: 0.1.10
       '@humeai/voice-react':
         specifier: ^0.1.16
         version: 0.1.16(react-dom@19.0.0-rc-7771d3a7-20240827(react@19.0.0-rc-7771d3a7-20240827))(react@19.0.0-rc-7771d3a7-20240827)
@@ -162,14 +165,34 @@ importers:
 
 packages:
 
+  '@11labs/client@0.1.0':
+    resolution: {integrity: sha512-6fFU25BehyFkzjItt/SeZTBGnm8vBar1yF/fCkuY5kpa7nSEhNmo99brPDaheX6D6/oMqXfKs8C+oTHSUmKvTw==}
+
+  '@11labs/react@0.1.0':
+    resolution: {integrity: sha512-KsedGuGjqNvHboeu4+cZBg+4Vnf63zBYtTP14KoTRRJS0lIs4CuruIb+QypzIsWCQo9ieHvWLB0O9Lwj696oaA==}
+    peerDependencies:
+      react: '>=16.8.0'
+
   '@ai-sdk/anthropic@1.1.17':
     resolution: {integrity: sha512-t4ipxope34TFvWa4SrFsg2//aAFk3hUv2gxlM5W39IdsT7Hq2nMxJIcXE6C19YdhE/0Kep32iv38BgPaDZet6A==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
 
+  '@ai-sdk/deepseek@0.2.8':
+    resolution: {integrity: sha512-niPl6ePkpx/+is0ECL3FZhWTu1svHYlg+RiX2ktFer93iscBBAs0JYzKo6YnFy/84KWoEFo9RlwjCSKxM86IKQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.0.0
+
   '@ai-sdk/google@1.2.3':
     resolution: {integrity: sha512-zsgwko7T+MFIdEfhg4fIXv6O2dnzTLFr6BOpAA21eo/moOBA5szVzOto1jTwIwoBYsF2ixPGNZBoc+k/fQ2AWw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.0.0
+
+  '@ai-sdk/openai-compatible@0.2.8':
+    resolution: {integrity: sha512-o1CrhTrXnMj72G44oBqlDDBtunw6iwONysXj7EYN/Fx27rhP7YTcWwVeKs5gMx/u/8TIho9iZ9rkqXXc2xg8Bg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
@@ -210,6 +233,12 @@ packages:
     peerDependencies:
       zod: ^3.23.8
 
+  '@ai-sdk/provider-utils@2.2.6':
+    resolution: {integrity: sha512-sUlZ7Gnq84DCGWMQRIK8XVbkzIBnvPR1diV4v6JwPgpn5armnLI/j+rqn62MpLrU5ZCQZlDKl/Lw6ed3ulYqaA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.23.8
+
   '@ai-sdk/provider@1.0.10':
     resolution: {integrity: sha512-pco8Zl9U0xwXI+nCLc0woMtxbvjU8hRmGTseAUiPHFLYAAL8trRPCukg69IDeinOvIeo1SmXxAIdWWPZOLb4Cg==}
     engines: {node: '>=18'}
@@ -220,6 +249,10 @@ packages:
 
   '@ai-sdk/provider@1.1.0':
     resolution: {integrity: sha512-0M+qjp+clUD0R1E5eWQFhxEvWLNaOtGQRUaBn8CUABnSKredagq92hUS9VjOzGsTm37xLfpaxl97AVtbeOsHew==}
+    engines: {node: '>=18'}
+
+  '@ai-sdk/provider@1.1.2':
+    resolution: {integrity: sha512-ITdgNilJZwLKR7X5TnUr1BsQW6UTX5yFp0h66Nfx8XjBYkWD9W3yugr50GOz3CnE9m/U/Cd5OyEbTMI0rgi6ZQ==}
     engines: {node: '>=18'}
 
   '@ai-sdk/react@1.2.0':
@@ -724,9 +757,6 @@ packages:
     peerDependencies:
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
-
-  '@humeai/voice@0.1.10':
-    resolution: {integrity: sha512-21QEM2JKD2EzOVUw/rmT4NlCqhbka0Jy6EZ2JIrZ3FcT8/Y6JR/RgvS19mbAGnvgpjt3+PvQnuIosjd/0uzMhw==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -1592,9 +1622,6 @@ packages:
     resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
     engines: {node: '>=6.0.0'}
 
-  dot-case@3.0.4:
-    resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
-
   dotenv@16.4.5:
     resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
     engines: {node: '>=12'}
@@ -2397,15 +2424,8 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  lower-case@2.0.2:
-    resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
-
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
-
-  map-obj@4.3.0:
-    resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
-    engines: {node: '>=8'}
 
   markdown-table@3.0.3:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
@@ -2642,9 +2662,6 @@ packages:
         optional: true
       sass:
         optional: true
-
-  no-case@3.0.4:
-    resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
@@ -2929,9 +2946,6 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
 
-  reconnecting-websocket@4.4.0:
-    resolution: {integrity: sha512-D2E33ceRPga0NvTDhJmphEgJ7FUYF0v4lr1ki0csq06OdlxKfugGzN0dSkxM/NfqCxYELK4KcaTOUOjTV6Dcng==}
-
   reflect.getprototypeof@1.0.6:
     resolution: {integrity: sha512-fmfw4XgoDke3kdI6h4xcUz1dG8uaiv5q9gcEwLS4Pnth2kxT+GZ7YehS1JTMGBQmtV7Y4GFGbs2re2NqhdozUg==}
     engines: {node: '>= 0.4'}
@@ -3053,13 +3067,6 @@ packages:
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
-
-  snake-case@3.0.4:
-    resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}
-
-  snakecase-keys@8.0.1:
-    resolution: {integrity: sha512-Sj51kE1zC7zh6TDlNNz0/Jn1n5HiHdoQErxO8jLtnyrkJW/M5PrI7x05uDgY3BO7OUQYKCvmeMurW6BPUdwEOw==}
-    engines: {node: '>=18'}
 
   sonner@1.5.0:
     resolution: {integrity: sha512-FBjhG/gnnbN6FY0jaNnqZOMmB73R+5IiyYAw8yBj7L54ER7HB3fOSE5OFiQiE2iXWxeXKvg6fIP4LtVppHEdJA==}
@@ -3225,9 +3232,6 @@ packages:
 
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
-
-  ts-pattern@5.5.0:
-    resolution: {integrity: sha512-jqbIpTsa/KKTJYWgPNsFNbLVpwCgzXfFJ1ukNn4I8hMwyQzHMJnk/BqWzggB0xpkILuKzaO/aMYhS0SkaJyKXg==}
 
   tsconfig-paths@3.15.0:
     resolution: {integrity: sha512-2Ac2RgzDe/cn48GvOe3M+o82pEFewD3UPbyoUHHdKasHwJKjds4fLXWf/Ux5kATBKN20oaFGu+jbElp1pos0mg==}
@@ -3430,16 +3434,36 @@ packages:
 
 snapshots:
 
+  '@11labs/client@0.1.0': {}
+
+  '@11labs/react@0.1.0(react@19.0.0-rc-7771d3a7-20240827)':
+    dependencies:
+      '@11labs/client': 0.1.0
+      react: 19.0.0-rc-7771d3a7-20240827
+
   '@ai-sdk/anthropic@1.1.17(zod@3.23.8)':
     dependencies:
       '@ai-sdk/provider': 1.0.11
       '@ai-sdk/provider-utils': 2.1.13(zod@3.23.8)
       zod: 3.23.8
 
+  '@ai-sdk/deepseek@0.2.8(zod@3.23.8)':
+    dependencies:
+      '@ai-sdk/openai-compatible': 0.2.8(zod@3.23.8)
+      '@ai-sdk/provider': 1.1.2
+      '@ai-sdk/provider-utils': 2.2.6(zod@3.23.8)
+      zod: 3.23.8
+
   '@ai-sdk/google@1.2.3(zod@3.23.8)':
     dependencies:
       '@ai-sdk/provider': 1.1.0
       '@ai-sdk/provider-utils': 2.2.1(zod@3.23.8)
+      zod: 3.23.8
+
+  '@ai-sdk/openai-compatible@0.2.8(zod@3.23.8)':
+    dependencies:
+      '@ai-sdk/provider': 1.1.2
+      '@ai-sdk/provider-utils': 2.2.6(zod@3.23.8)
       zod: 3.23.8
 
   '@ai-sdk/openai@1.2.2(zod@3.23.8)':
@@ -3481,6 +3505,13 @@ snapshots:
       secure-json-parse: 2.7.0
       zod: 3.23.8
 
+  '@ai-sdk/provider-utils@2.2.6(zod@3.23.8)':
+    dependencies:
+      '@ai-sdk/provider': 1.1.2
+      nanoid: 3.3.9
+      secure-json-parse: 2.7.0
+      zod: 3.23.8
+
   '@ai-sdk/provider@1.0.10':
     dependencies:
       json-schema: 0.4.0
@@ -3490,6 +3521,10 @@ snapshots:
       json-schema: 0.4.0
 
   '@ai-sdk/provider@1.1.0':
+    dependencies:
+      json-schema: 0.4.0
+
+  '@ai-sdk/provider@1.1.2':
     dependencies:
       json-schema: 0.4.0
 
@@ -3798,13 +3833,6 @@ snapshots:
       - rollup
       - supports-color
       - utf-8-validate
-
-  '@humeai/voice@0.1.10':
-    dependencies:
-      reconnecting-websocket: 4.4.0
-      snakecase-keys: 8.0.1
-      ts-pattern: 5.5.0
-      zod: 3.23.8
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
@@ -4628,11 +4656,6 @@ snapshots:
   doctrine@3.0.0:
     dependencies:
       esutils: 2.0.3
-
-  dot-case@3.0.4:
-    dependencies:
-      no-case: 3.0.4
-      tslib: 2.7.0
 
   dotenv@16.4.5: {}
 
@@ -5598,13 +5621,7 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  lower-case@2.0.2:
-    dependencies:
-      tslib: 2.7.0
-
   lru-cache@10.4.3: {}
-
-  map-obj@4.3.0: {}
 
   markdown-table@3.0.3: {}
 
@@ -6045,11 +6062,6 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  no-case@3.0.4:
-    dependencies:
-      lower-case: 2.0.2
-      tslib: 2.7.0
-
   node-domexception@1.0.0: {}
 
   node-ensure@0.0.0: {}
@@ -6333,8 +6345,6 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
-  reconnecting-websocket@4.4.0: {}
-
   reflect.getprototypeof@1.0.6:
     dependencies:
       call-bind: 1.0.7
@@ -6513,17 +6523,6 @@ snapshots:
     optional: true
 
   slash@3.0.0: {}
-
-  snake-case@3.0.4:
-    dependencies:
-      dot-case: 3.0.4
-      tslib: 2.7.0
-
-  snakecase-keys@8.0.1:
-    dependencies:
-      map-obj: 4.3.0
-      snake-case: 3.0.4
-      type-fest: 4.26.1
 
   sonner@1.5.0(react-dom@19.0.0-rc-7771d3a7-20240827(react@19.0.0-rc-7771d3a7-20240827))(react@19.0.0-rc-7771d3a7-20240827):
     dependencies:
@@ -6720,8 +6719,6 @@ snapshots:
       typescript: 5.6.3
 
   ts-interface-checker@0.1.13: {}
-
-  ts-pattern@5.5.0: {}
 
   tsconfig-paths@3.15.0:
     dependencies:
