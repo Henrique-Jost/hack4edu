@@ -78,9 +78,9 @@ export async function POST(request: Request) {
     experimental_telemetry: { isEnabled: true },
   });
 
-  // Log the model and response
-  console.log("Using model:", customModel);
-  console.log("Response:", result);
+  // Log the model and response for test
+  //console.log("Using model:", customModel);
+  //console.log("Response:", result);
   
 
   return result.toDataStreamResponse({
