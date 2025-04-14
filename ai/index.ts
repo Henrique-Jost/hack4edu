@@ -1,4 +1,4 @@
-import { openai } from "@ai-sdk/openai";
+//import { openai } from "@ai-sdk/openai";
 import { deepseek } from '@ai-sdk/deepseek';
 import { google } from '@ai-sdk/google';
 import { anthropic } from "@ai-sdk/anthropic"

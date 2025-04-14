@@ -72,6 +72,7 @@ export const ragMiddleware: LanguageModelV1Middleware = {
       // fast model for generating hypothetical answer:
       model: openai.responses("gpt-4o-mini"),
       system: `You are an intelligent tutoring assistant designed to help students understand academic concepts.
+      Your role here is to improve Hypothetical Document Embeddings contextual search generation
       
       Key responsibilities:
       - Provide clear, structured explanations of academic concepts
