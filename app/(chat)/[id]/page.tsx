@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Chat as PreviewChat } from "@/components/chat";
 import { auth } from "@/app/(auth)/auth";
 
+
 export default async function Page({ params }: { params: any }) {
   const { id } = params;
   const chatFromDb = await getChatById({ id });
@@ -26,10 +27,12 @@ export default async function Page({ params }: { params: any }) {
   }
 
   return (
-    <PreviewChat
-      id={chat.id}
-      initialMessages={chat.messages}
-      session={session}
-    />
+      <PreviewChat
+        id={chat.id}
+        initialMessages={chat.messages}
+        session={session}
+      />
+      
   );
 }
+

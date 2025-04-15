@@ -77,7 +77,7 @@ export const Files = ({
         <div className="flex flex-row justify-between items-center">
           <div className="text-sm flex flex-row gap-3">
             <div className="text-zinc-900 dark:text-zinc-300">
-              Manage Knowledge Base
+              Add books, papers or references materials (txt, pdf)
             </div>
           </div>
 

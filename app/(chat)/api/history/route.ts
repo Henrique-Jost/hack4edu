@@ -1,5 +1,5 @@
 import { auth } from "@/app/(auth)/auth";
-import { getChatsByUser } from "@/app/db";
+import { getChatsByUser, getChatById } from "@/app/db";
 
 export async function GET() {
   let session = await auth();
@@ -11,3 +11,5 @@ export async function GET() {
   const chats = await getChatsByUser({ email: session.user.email! });
   return Response.json(chats);
 }
+
+

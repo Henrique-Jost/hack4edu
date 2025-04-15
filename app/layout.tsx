@@ -5,11 +5,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    "https://ai-sdk-preview-internal-knowledge-base.vercel.app",
+    "https://hack4edu-compass.vercel.app/",
   ),
-  title: "Internal Knowledge Base",
+  title: "Enki Study",
   description:
-    "Internal Knowledge Base using Retrieval Augmented Generation and Middleware",
+    "Your companion for learning",
 };
 
 export default function RootLayout({
