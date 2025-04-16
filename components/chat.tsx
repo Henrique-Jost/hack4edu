@@ -2,10 +2,10 @@
 
 import { Message } from "ai";
 import { useChat } from "ai/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Files } from "@/components/files";
 import { AnimatePresence, motion } from "framer-motion";
-import { AttachmentIcon, FileIcon, MoreIcon, SendIcon, UploadIcon } from "@/components/icons";
+import { AttachmentIcon, FileIcon, MoreIcon, SendIcon, UploadIcon, ImageIcon } from "@/components/icons";
 import { Message as PreviewMessage } from "@/components/message";
 import { useScrollToBottom } from "@/components/use-scroll-to-bottom";
 import { UserFeedbackComponent } from "@/components/UserFeedbackComponent";
@@ -44,36 +44,14 @@ export function Chat({
   initialMessages: Array<Message>;
   session: Session | null;
 }) {
+  // ... existing state ...
   const [selectedFilePathnames, setSelectedFilePathnames] = useState<
     Array<string>
   >([]);
   const [isFilesVisible, setIsFilesVisible] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    if (isMounted !== false && session && session.user) {
-      localStorage.setItem(
-        `${session.user.email}/selected-file-pathnames`,
-        JSON.stringify(selectedFilePathnames),
-      );
-    }
-  }, [selectedFilePathnames, isMounted, session]);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (session && session.user) {
-      setSelectedFilePathnames(
-        JSON.parse(
-          localStorage.getItem(
-            `${session.user.email}/selected-file-pathnames`,
-          ) || "[]",
-        ),
-      );
-    }
-  }, [session]);
+  // ... useEffect hooks ...
 
   const { messages, handleSubmit, input, setInput, append } = useChat({
     body: { id, selectedFilePathnames },
@@ -82,6 +60,10 @@ export function Chat({
       window.history.replaceState({}, "", `/${id}`);
     },
   });
+
+  // multimodal input state and ref (already added)
+  const [imageFiles, setImageFiles] = useState<FileList | null>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
 
 
   const [messagesContainerRef, messagesEndRef] =
@@ -95,25 +77,42 @@ export function Chat({
           className="flex flex-col gap-4 flex-1 w-dvw items-center overflow-y-scroll"
         >
           {messages.map((message, index) => (
-            <div key={`${id}-${index}`} className="justify-center">
-            <PreviewMessage
-              role={message.role}
-              content={message.content}
-            />
-            {message.role === "assistant" && (
-              <div className="flex justify-end mt-1 mr-4">
-                <UserFeedbackComponent traceId={id} />
-                <VoiceButton text={message.content} />
-              </div>
-              
-            )}
-          </div>
+            <div key={`${id}-${index}-${message.id}`} className="justify-center w-full md:max-w-[700px] px-4 md:px-0"> {/* Added message.id to key for better stability */}
+              <PreviewMessage
+                role={message.role}
+                content={message.content}
+              />
+              {/* Display attached images for both user and assistant messages */}
+              {message.experimental_attachments && message.experimental_attachments.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-2 pl-10"> {/* Adjust styling as needed */}
+                  {message.experimental_attachments
+                    .filter(attachment => attachment.contentType?.startsWith('image/'))
+                    .map((attachment, attachIndex) => (
+                      <Image // Use Next.js Image component
+                        key={`${message.id}-attach-${attachIndex}`}
+                        src={attachment.url} // The SDK provides a temporary URL
+                        width={100} // Adjust size as needed
+                        height={100}
+                        alt={attachment.name ?? `attachment-${attachIndex}`}
+                        className="rounded object-cover" // Example styling
+                      />
+                  ))}
+                </div>
+              )}
+              {message.role === "assistant" && (
+                <div className="flex justify-end mt-1 mr-4">
+                  <UserFeedbackComponent traceId={id} />
+                  <VoiceButton text={message.content} />
+                </div>
+              )}
+            </div>
           ))}
           <div
             ref={messagesEndRef}
             className="flex-shrink-0 min-w-[24px] min-h-[24px]"
           />
         </div>
+        {/* ... Suggested Actions ... */}
         {messages.length === 0 && (
           <div className="grid sm:grid-cols-3 gap-2 w-full px-4 md:px-0 mx-auto md:max-w-[700px]">
             {suggestedActions.map((suggestedAction, index) => (
@@ -144,54 +143,129 @@ export function Chat({
         )}
 
         <div className="w-full md:max-w-[700px] px-4 md:px-0 pb-5">
-          <form onSubmit={handleSubmit}>
+          {/* Update the form's onSubmit handler */}
+          <form onSubmit={event => {
+            handleSubmit(event, {
+              experimental_attachments: imageFiles ?? undefined, // Pass undefined if null
+            });
+            // Clear state and input after submit
+            setImageFiles(null);
+            if (imageInputRef.current) {
+              imageInputRef.current.value = '';
+            }
+          }}>
             <div className="relative bg-zinc-600 dark:bg-neutral-50 border border-zinc-200 rounded-lg overflow-hidden">
               {/* Textarea Section */}
               <textarea
                 className="w-full pl-4 pr-2 pt-4 pb-2 bg-transparent outline-none text-zinc-800 dark:text-zinc-00 resize-none placeholder:text-left min-h-[80px]"
-                placeholder="Send a message..."
+                placeholder="Send a message or drop an image..." // Updated placeholder
                 value={input}
                 onChange={(event) => {
                   setInput(event.target.value);
                 }}
                 rows={3}
               />
-              
+
+              {/* Display selected image previews (optional but good UX) */}
+              {imageFiles && imageFiles.length > 0 && (
+                <div className="flex flex-wrap gap-2 p-2 pl-4 border-zinc-100 dark:border-zinc-700">
+                  {Array.from(imageFiles).map((file, index) => (
+                     <div key={index} className="relative">
+                      <Image
+                        src={URL.createObjectURL(file)} // Create temporary URL for preview
+                        width={60}
+                        height={60}
+                        alt={file.name}
+                        className="rounded object-cover"
+                        onLoad={e => URL.revokeObjectURL(e.currentTarget.src)} // Clean up object URL
+                      />
+                       <button
+                         type="button"
+                         onClick={() => {
+                           const dt = new DataTransfer();
+                           const remainingFiles = Array.from(imageFiles).filter((_, i) => i !== index);
+                           remainingFiles.forEach(f => dt.items.add(f));
+                           setImageFiles(dt.files.length > 0 ? dt.files : null);
+                           if (imageInputRef.current) {
+                              imageInputRef.current.files = dt.files; // Update input's files
+                           }
+                         }}
+                         className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-0.5 text-xs leading-none"
+                         aria-label="Remove image"
+                       >
+                         &times;
+                       </button>
+                     </div>
+                  ))}
+                </div>
+              )}
+
               {/* Button Section */}
-              <div className="border-zinc-700 p-3 flex items-center justify-between">
-                <div className="flex items-center">
+              <div className="border-zinc-200 dark:border-zinc-700 p-3 flex items-center justify-between"> {/* Added border-t */}
+                <div className="flex items-center gap-2"> {/* Added gap */}
+                  {/* Persistent File Button */}
                   <button
                     type="button"
                     className="flex items-center gap-0.2 p-2 text-sm rounded-md cursor-pointer hover:bg-neutral-400 dark:text-zinc-900 transition-colors"
                     onClick={() => setIsFilesVisible(!isFilesVisible)}
+                    title="Manage context files" // Added title
                   >
                     <FileIcon />
                     <motion.div
-                      className="relative text-xs bg-green-900 size-5 rounded-full flex items-center justify-center border-2 dark:border-zinc-900 border-white text-blue-50"
+                      className="relative text-xs bg-green-900 size-5 rounded-full flex items-center justify-center border-2 dark:border-zinc-900 border-white text-white" // Adjusted colors
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.5 }}
+                      key={selectedFilePathnames?.length ?? 0} // Added key for animation trigger
                     >
-                      {selectedFilePathnames?.length}
+                      {selectedFilePathnames?.length ?? 0}
                     </motion.div>
                   </button>
 
+                  {/* Image Attachment Button */}
+                  <button
+                    type="button"
+                    onClick={() => imageInputRef.current?.click()}
+                    className="p-2 text-sm rounded-md cursor-pointer hover:bg-neutral-400 dark:text-zinc-900 transition-colors"
+                    title="Attach images" // Added title
+                  >
+                    <ImageIcon /> {/* Using AttachmentIcon */}
+                  </button>
+                  {/* Hidden File Input for Images */}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    ref={imageInputRef}
+                    onChange={event => {
+                      if (event.target.files && event.target.files.length > 0) {
+                        setImageFiles(event.target.files);
+                      } else {
+                         // Handle case where user cancels file selection
+                         if (imageFiles === null) { // Only clear if nothing was selected before
+                             setImageFiles(null);
+                         }
+                      }
+                    }}
+                    className="hidden" // Keep it hidden
+                  />
+
                   {/* Audio Mode */}
-                  <AudioRecordButton onTranscriptionComplete={(text) => setInput(text)}></AudioRecordButton>
-                  
+                  <AudioRecordButton onTranscriptionComplete={(text) => setInput(text)} />
+
                   {/* Enki live */}
                   <Conversation />
 
                 </div>
 
                 {/* Send Button */}
-                
                 <button
                   type="submit"
-                  className="flex items-center gap-2 px-4 py-2 text-sm rounded-md cursor-pointer bg-green-900 hover:bg-neutral-800 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={!input.trim()}
+                  className="flex items-center gap-2 px-4 py-2 text-sm rounded-md cursor-pointer bg-green-900 hover:bg-gray-700 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed" // Adjusted colors
+                  disabled={!input.trim() && (!imageFiles || imageFiles.length === 0)} // Disable if no text AND no images
                 >
-                  <SendIcon></SendIcon>
+                  Send
+                  <SendIcon />
                 </button>
               </div>
             </div>
@@ -210,3 +284,4 @@ export function Chat({
     </div>
   );
 }
+

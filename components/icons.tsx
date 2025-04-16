@@ -696,3 +696,24 @@ export const PlusIcon = ({ className }: { className?: string }) => {
     </svg>
   );
 };
+
+// ... existing code ...
+
+export function ImageIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg
+      height={size}
+      width={size}
+      viewBox="0 0 16 16"
+      style={{ color: "currentcolor" }}
+      strokeLinejoin="round"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1.5 1.5V3V13V14.5H3H13H14.5V13V3V1.5H13H3H1.5ZM13 3H3V13H13V3ZM6.5 5.5C6.5 6.32843 5.82843 7 5 7C4.17157 7 3.5 6.32843 3.5 5.5C3.5 4.67157 4.17157 4 5 4C5.82843 4 6.5 4.67157 6.5 5.5ZM12.5 11.5L9.5 7.5L7 11L5.5 9L3.5 11.5V12.5H12.5V11.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}

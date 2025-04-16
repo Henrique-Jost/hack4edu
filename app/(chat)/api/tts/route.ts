@@ -29,3 +29,4 @@ export async function POST(request: Request) {
     return new Response('Text-to-speech conversion failed', { status: 500 });
   }
 }
+
